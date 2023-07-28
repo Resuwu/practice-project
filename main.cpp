@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
+#include "timesetter.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +17,8 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+    TimeSetter *tmSet = new TimeSetter();
+    engine.rootContext()->setContextProperty("TimeSetter", tmSet);
     engine.load(url);
-
     return app.exec();
 }

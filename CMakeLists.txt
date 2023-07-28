@@ -17,6 +17,10 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 set(PROJECT_SOURCES
         main.cpp
         qml.qrc
+        configio.h
+        configio.cpp
+        timesetter.h
+        timesetter.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -14,6 +14,8 @@ ApplicationWindow {
             y = Screen.height / 2 - height / 2
         }
 
+    property url chosenfolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+
     StackView {
         id: stack
         anchors.fill: parent
@@ -31,6 +33,7 @@ ApplicationWindow {
                 onClicked: {
                     var component = Qt.createComponent("appwindow.qml")
                     var window = component.createObject(mainwindow)
+                    window.folderpath = chosenfolder
                     window.showFullScreen()
                 }
             }
@@ -77,7 +80,9 @@ ApplicationWindow {
             options: FolderDialog.ReadOnly
             rejectLabel: "Cancel"
             onAccepted: {
+                mainwindow.chosenfolder = currentFolder
                 stack.pop()
+                console.log(mainwindow.folderpath)
             }
             onRejected: {
                 stack.pop()
