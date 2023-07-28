@@ -2,8 +2,9 @@
 
 ConfigIO::ConfigIO() {}
 
-QUrl ConfigIO::loadConfig()
+QVariantList ConfigIO::loadConfig()
 {
+    QVariantList list;
     std::string str {};
     std::ifstream in("config");
     if (in.is_open()){
@@ -11,7 +12,9 @@ QUrl ConfigIO::loadConfig()
     }
     in.close();
     QUrl url = QUrl::fromPercentEncoding(QByteArray::fromStdString(str));
-    return url;
+    list.append(url);
+    list.append(!url.isEmpty());
+    return list;
 }
 
 void ConfigIO::saveConfig(QUrl url)

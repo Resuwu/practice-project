@@ -10,17 +10,26 @@ ApplicationWindow {
     visible: true
     title: " "
     Component.onCompleted: {
-            x = Screen.width / 2 - width / 2
-            y = Screen.height / 2 - height / 2
-            chosenfolder = ConfigIO.loadConfig()
-        }
+        x = Screen.width / 2 - width / 2
+        y = Screen.height / 2 - height / 2
+        var config = ConfigIO.loadConfig()
+        chosenfolder = config[0]
+        isselected = config[1]
+    }
 
-    property url chosenfolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+    property url chosenfolder
+    property bool isselected
 
     StackView {
         id: stack
         anchors.fill: parent
         initialItem: homepage
+    }
+
+    Dialog {
+        id: dialog
+        modal: false
+        standardButtons: Dialog.Ok
     }
 
     Page {
@@ -32,10 +41,14 @@ ApplicationWindow {
                 width: 300; height: 50
                 text: "Start"
                 onClicked: {
-                    var component = Qt.createComponent("appwindow.qml")
-                    var window = component.createObject(mainwindow)
-                    window.folderpath = chosenfolder
-                    window.showFullScreen()
+                    if (isselected !== false) {
+                        console.log(".",chosenfolder,".",isselected)
+                        var component = Qt.createComponent("appwindow.qml")
+                        var window = component.createObject(mainwindow)
+                        window.folderpath = chosenfolder
+                        window.showFullScreen()
+                    }
+                    else dialog.open()
                 }
             }
             Button {
@@ -82,6 +95,7 @@ ApplicationWindow {
             rejectLabel: "Cancel"
             onAccepted: {
                 mainwindow.chosenfolder = currentFolder
+                mainwindow.isselected = true
                 ConfigIO.saveConfig(folderdial.currentFolder)
                 stack.pop()
             }

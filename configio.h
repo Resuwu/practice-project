@@ -11,7 +11,7 @@ class ConfigIO : public QObject
     Q_OBJECT
 public:
     explicit ConfigIO();
-    Q_INVOKABLE QUrl loadConfig();
+    Q_INVOKABLE QVariantList loadConfig();
     Q_INVOKABLE void saveConfig(QUrl url);
 };
 

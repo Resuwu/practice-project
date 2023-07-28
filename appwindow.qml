@@ -29,7 +29,13 @@ Window {
             folder: folderpath
             showDirs: false
         }
-        delegate: Component { Image { source: fileUrl } }
+        delegate: Component {
+            Image {
+                height: Screen.height; width: Screen.width
+                fillMode: Image.Stretch
+                source: fileUrl
+            }
+        }
     }
 
     ListView {
@@ -77,7 +83,6 @@ Window {
 
         Component.onCompleted: {
             calibrateClock()
-            console.log(folderpath)
         }
 
         Image {
