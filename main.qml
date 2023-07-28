@@ -26,10 +26,13 @@ ApplicationWindow {
         initialItem: homepage
     }
 
-    Dialog {
+    MessageDialog {
         id: dialog
-        modal: false
-        standardButtons: Dialog.Ok
+        title: "No folder path!"
+        text: "You have to choose a folder in settings"
+        onAccepted: {
+                Qt.quit()
+            }
     }
 
     Page {

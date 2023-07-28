@@ -61,7 +61,7 @@ Window {
 
     Item {
         id: clock
-        property int clocksize: Math.min(Screen.height, Screen.width)/2
+        property int clocksize: Math.min(Screen.height, Screen.width)/3
         x: 10; y: 10;
         width: clocksize; height: clocksize
         scale: Math.min (width/clockback.sourceSize.width, height/clockback.sourceSize.height)
