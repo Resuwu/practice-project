@@ -1,16 +1,24 @@
 #include "configio.h"
 
-ConfigIO::ConfigIO(QObject *parent)
-    : QObject{parent}
-{}
+ConfigIO::ConfigIO() {}
 
-int ConfigIO::loadConfig()
+QUrl ConfigIO::loadConfig()
 {
-
+    std::string str {};
+    std::ifstream in("config");
+    if (in.is_open()){
+        getline(in, str);
+    }
+    in.close();
+    QUrl url = QUrl::fromPercentEncoding(QByteArray::fromStdString(str));
+    return url;
 }
 
-int ConfigIO::saveConfig()
+void ConfigIO::saveConfig(QUrl url)
 {
-
+    std::ofstream out("config");
+    if (out.is_open()){
+        out << url.toString().toStdString();
+    }
+    out.close();
 }
-

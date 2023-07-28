@@ -12,6 +12,7 @@ ApplicationWindow {
     Component.onCompleted: {
             x = Screen.width / 2 - width / 2
             y = Screen.height / 2 - height / 2
+            chosenfolder = ConfigIO.loadConfig()
         }
 
     property url chosenfolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
@@ -81,8 +82,8 @@ ApplicationWindow {
             rejectLabel: "Cancel"
             onAccepted: {
                 mainwindow.chosenfolder = currentFolder
+                ConfigIO.saveConfig(folderdial.currentFolder)
                 stack.pop()
-                console.log(mainwindow.folderpath)
             }
             onRejected: {
                 stack.pop()

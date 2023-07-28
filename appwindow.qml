@@ -77,6 +77,7 @@ Window {
 
         Component.onCompleted: {
             calibrateClock()
+            console.log(folderpath)
         }
 
         Image {

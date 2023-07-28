@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "timesetter.h"
+#include "configio.h"
 #include <QQmlContext>
 
 int main(int argc, char *argv[])
@@ -18,7 +19,9 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     TimeSetter *tmSet = new TimeSetter();
+    ConfigIO *config = new ConfigIO();
     engine.rootContext()->setContextProperty("TimeSetter", tmSet);
+    engine.rootContext()->setContextProperty("ConfigIO", config);
     engine.load(url);
     return app.exec();
 }

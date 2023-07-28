@@ -3,15 +3,16 @@
 
 #include <QObject>
 #include <QQuickItem>
-#include <iostream>
+#include <fstream>
+#include <string>
 
 class ConfigIO : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConfigIO(QObject *parent = nullptr);
-    int loadConfig();
-    int saveConfig();
+    explicit ConfigIO();
+    Q_INVOKABLE QUrl loadConfig();
+    Q_INVOKABLE void saveConfig(QUrl url);
 };
 
 #endif // CONFIGIO_H
