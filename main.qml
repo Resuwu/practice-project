@@ -30,9 +30,6 @@ ApplicationWindow {
         id: dialog
         title: "No folder path!"
         text: "You have to choose a folder in settings"
-        onAccepted: {
-                Qt.quit()
-            }
     }
 
     Page {
@@ -45,7 +42,6 @@ ApplicationWindow {
                 text: "Start"
                 onClicked: {
                     if (isselected !== false) {
-                        console.log(".",chosenfolder,".",isselected)
                         var component = Qt.createComponent("appwindow.qml")
                         var window = component.createObject(mainwindow)
                         window.folderpath = chosenfolder

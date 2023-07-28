@@ -21,7 +21,6 @@ set(PROJECT_SOURCES
         configio.cpp
         timesetter.h
         timesetter.cpp
-        config
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
